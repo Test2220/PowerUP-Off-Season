@@ -65,6 +65,7 @@ public class GaganDrive extends Subsystem {
         rightMaster.set(ControlMode.PercentOutput, 0);
     }
 
+    // TODO Remove if using native curvature drive
     // Clip Method To Manage Range Of Values
     private double clip(double input, double min, double max) {
         if (input > max)
