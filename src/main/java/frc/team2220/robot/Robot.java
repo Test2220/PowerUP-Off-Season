@@ -1,15 +1,18 @@
 package frc.team2220.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team2220.robot.subsystems.GaganDrive;
 
 public class Robot extends IterativeRobot {
 
     public static final GaganDrive  gaganDrive  = new GaganDrive();
-    public static final OI          oi          = new OI();
+    public static       OI          oi          = null;
 
     @Override
-    public void robotInit() { }
+    public void robotInit() {
+        oi = new OI();
+    }
 
     @Override
     public void disabledInit() { }
@@ -27,11 +30,17 @@ public class Robot extends IterativeRobot {
     public void disabledPeriodic() { }
     
     @Override
-    public void autonomousPeriodic() { }
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
-    public void teleopPeriodic() { }
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
-    public void testPeriodic() { }
+    public void testPeriodic() {
+        Scheduler.getInstance().run();
+    }
 }
