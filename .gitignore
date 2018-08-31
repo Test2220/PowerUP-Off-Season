@@ -2,3 +2,5 @@
 *.ipr
 *.iml
 *.bin
+*.lock
+\.gradle
