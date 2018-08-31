@@ -9,6 +9,7 @@ public class RobotConstants<b> {
     static final int RIGHT_DRIVE_MASTER = 2,
             RIGHT_DRIVE_SLAVE = 4;
 
+    // QUANG pc wrote this comment
     void test() {
         int a = 5, b = 13, c = 21;
         if ((a + 8) == b) {
