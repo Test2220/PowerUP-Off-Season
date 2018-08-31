@@ -1,8 +1,12 @@
 package frc.team2220.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import frc.team2220.robot.subsystems.GaganDrive;
 
 public class Robot extends IterativeRobot {
+
+    public static final GaganDrive  gaganDrive  = new GaganDrive();
+    public static final OI          oi          = new OI();
 
     @Override
     public void robotInit() { }
