@@ -29,11 +29,14 @@ public class GaganDrive extends Subsystem {
         leftSlave.follow(leftMaster);
         rightSlave.follow(rightMaster);
 
+        // Enable Motor Safety
+        leftMaster.setSafetyEnabled(true);
+        rightMaster.setSafetyEnabled(true);
+        leftSlave.setSafetyEnabled(true);
+        rightSlave.setSafetyEnabled(true);
+
         // Brake Motors
-        leftMaster.setNeutralMode(NeutralMode.Brake);
-        rightMaster.setNeutralMode(NeutralMode.Brake);
-        leftSlave.setNeutralMode(NeutralMode.Brake);
-        rightSlave.setNeutralMode(NeutralMode.Brake);
+        setNeutralMode(NeutralMode.Brake);
 
         // Reverse Right Side Motors TODO Check if right side is the correct side to invert
         rightMaster.setInverted(true);
@@ -41,9 +44,11 @@ public class GaganDrive extends Subsystem {
 
         // TODO Figure out encoders and set them up here
 
-        // Define DifferentialDrive With Configured Talons
+        // Define DifferentialDrive With Configured Master Talons
         diffDrive = new DifferentialDrive(leftMaster, rightMaster);
     }
+
+    /* DRIVETRAIN TELEOP AND AUTONOMOUS METHODS */
 
     // TODO Check controller values to see if add or subtract turn param
     // Custom CurvatureDrive Method To Work Without DifferentialDrive
@@ -53,7 +58,6 @@ public class GaganDrive extends Subsystem {
     }*/
 
     // TODO See if pre made or custom curvature drive is better
-
     // Pre-made CurvatureDrive Method
     public void curvatureDrive(double power, double turn) {
         diffDrive.curvatureDrive(power, turn, true);
@@ -63,6 +67,26 @@ public class GaganDrive extends Subsystem {
     public void usePercentOutput() {
         leftMaster.set(ControlMode.PercentOutput, 0);
         rightMaster.set(ControlMode.PercentOutput, 0);
+    }
+
+    // Sets Power To Both Drive Motors
+    public void setPower(double bothPower) {
+        leftMaster.set(bothPower);
+        rightMaster.set(bothPower);
+    }
+
+    // Set Neutral Mode Of All Motors
+    public void setNeutralMode(NeutralMode neutralMode) {
+        leftMaster.setNeutralMode(neutralMode);
+        rightMaster.setNeutralMode(neutralMode);
+        leftSlave.setNeutralMode(neutralMode);
+        rightSlave.setNeutralMode(neutralMode);
+    }
+
+    // Stop And Brake Motors
+    public void stopMotors() {
+        setPower(0);
+        setNeutralMode(NeutralMode.Brake);
     }
 
     // TODO Remove if using native curvature drive

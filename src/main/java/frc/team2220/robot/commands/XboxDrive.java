@@ -27,15 +27,14 @@ public class XboxDrive extends Command {
     }
 
     // Never Finish Command
-    public boolean isFinished() {
-        return interrupted;
-    }
+    public boolean isFinished() { return interrupted; }
 
     // If Interrupted Kill Drivetrain
     @Override
     public void interrupted() {
 
-        // TODO Kill drivetrain code
+        // Run Kill Drive Train Command
+        new KillDrive();
 
         // Set Value After Safely Shutting Down Drivetrain
         interrupted = true;

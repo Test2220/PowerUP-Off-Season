@@ -22,5 +22,4 @@ public class OI {
         driver      = new XboxController(RobotMap.XBOX_DRIVER);
         manipulator = new XboxController(RobotMap.XBOX_MANIPULATOR);
     }
-
 }
