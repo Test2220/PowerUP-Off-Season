@@ -39,7 +39,7 @@ public class Shooter extends Subsystem
         bottomLeftTalon.setInverted(false);
     }
 
-    //Sets the motors based on the Control Mode and the Value
+    //Sets the motors based on the Control Mode and the Value:
     public void spinAllMotors(ControlMode controlMode, double value)
     {
         topRightTalon.set(controlMode, value);
@@ -48,9 +48,25 @@ public class Shooter extends Subsystem
         bottomLeftTalon.set(controlMode, value);
     }
 
-    public void setCubePiston()
+    //Configures possible Cube Piston Positions:
+    public enum CubePistonPosition
     {
+        UP,
+        DOWN
+    }
 
+    //Sets the Cube Piston Position to UP or DOWN based on parameters entered:
+    public void setCubePiston(CubePistonPosition position)
+    {
+        switch (position)
+        {
+            case UP:
+                cubePiston.set(DoubleSolenoid.Value.kReverse);
+                break;
+            case DOWN:
+                cubePiston.set(DoubleSolenoid.Value.kForward);
+                break;
+        }
     }
 
     @Override
