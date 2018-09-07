@@ -14,13 +14,15 @@ public class GaganDrive extends Subsystem {
     private final DifferentialDrive diffDrive;
 
     // Create CAN Talons
-    private WPI_TalonSRX leftMaster     = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
-    private WPI_TalonSRX rightMaster    = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
-    private WPI_TalonSRX leftSlave      = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
-    private WPI_TalonSRX rightSlave     = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
+    public static WPI_TalonSRX leftMaster     = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
+    public static WPI_TalonSRX rightMaster    = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
+    public static WPI_TalonSRX leftSlave      = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
+    public static WPI_TalonSRX rightSlave     = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
 
     // Execute XboxDrive Command During Periodic
-    public void initDefaultCommand() { setDefaultCommand(new XboxDrive()); }
+    public void initDefaultCommand() {
+        setDefaultCommand(new XboxDrive());
+    }
 
     // Constructor Configure Talons and Define DifferentialDrive
     public GaganDrive() {
@@ -30,10 +32,12 @@ public class GaganDrive extends Subsystem {
         rightSlave.follow(rightMaster);
 
         // Enable Motor Safety
+        /*
         leftMaster.setSafetyEnabled(true);
         rightMaster.setSafetyEnabled(true);
         leftSlave.setSafetyEnabled(true);
         rightSlave.setSafetyEnabled(true);
+        */
 
         // Brake Motors
         setNeutralMode(NeutralMode.Brake);
@@ -41,6 +45,8 @@ public class GaganDrive extends Subsystem {
         // Reverse Right Side Motors TODO Check if right side is the correct side to invert
         rightMaster.setInverted(true);
         rightSlave.setInverted(true);
+        leftMaster.setInverted(true);
+        leftSlave.setInverted(true);
 
         // TODO Figure out encoders and set them up here
 

@@ -1,16 +1,22 @@
 package frc.team2220.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.sun.media.jfxmedia.logging.Logger;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team2220.robot.subsystems.GaganDrive;
 
-public class Robot extends IterativeRobot {
+import javax.naming.ldap.Control;
 
-    public static final GaganDrive  gaganDrive  = new GaganDrive();
-    public static       OI          oi          = null;
+public class Robot extends TimedRobot {
+
+    public static GaganDrive  gaganDrive  = null;
+    public static OI          oi          = null;
 
     @Override
     public void robotInit() {
+        gaganDrive = new GaganDrive();
         oi = new OI();
     }
 
@@ -30,7 +36,9 @@ public class Robot extends IterativeRobot {
     public void disabledPeriodic() { }
     
     @Override
-    public void autonomousPeriodic() { Scheduler.getInstance().run(); }
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     @Override
     public void teleopPeriodic() {
@@ -39,6 +47,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void testPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
+        gaganDrive.setPower(0.2);
     }
 }

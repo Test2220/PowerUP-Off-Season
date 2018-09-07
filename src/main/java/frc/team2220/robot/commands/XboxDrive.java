@@ -13,14 +13,16 @@ public class XboxDrive extends Command {
     public XboxDrive() { requires(Robot.gaganDrive); }
 
     // On XboxDrive Switch Control Mode To Percent Output
-    public void initialize() { Robot.gaganDrive.usePercentOutput(); }
+    public void initialize() {
+        Robot.gaganDrive.usePercentOutput();
+    }
 
     // Executes Drive Code Periodically
     public void execute() {
 
         // Define Variables From Driver Controller
         double leftY    = Robot.oi.getDriver().getY(GenericHID.Hand.kLeft);
-        double rightX   = Robot.oi.getDriver().getX(GenericHID.Hand.kRight);
+        double rightX   = -Robot.oi.getDriver().getX(GenericHID.Hand.kRight);
 
         // Execute CurvatureDrive With Controller Values Specified
         Robot.gaganDrive.curvatureDrive(leftY, rightX);
