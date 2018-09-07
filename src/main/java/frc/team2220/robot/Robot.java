@@ -6,6 +6,7 @@ import frc.team2220.robot.subsystems.GaganDrive;
 
 public class Robot extends IterativeRobot {
 
+    //Creates a static instance of the subsystem GaganDrive
     public static final GaganDrive  gaganDrive  = new GaganDrive();
     public static       OI          oi          = null;
 

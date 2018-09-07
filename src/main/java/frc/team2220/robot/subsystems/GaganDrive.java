@@ -39,8 +39,10 @@ public class GaganDrive extends Subsystem {
         setNeutralMode(NeutralMode.Brake);
 
         // Reverse Right Side Motors TODO Check if right side is the correct side to invert
-        rightMaster.setInverted(true);
-        rightSlave.setInverted(true);
+        //rightMaster.setInverted(true);
+        //rightSlave.setInverted(true);
+
+
 
         // TODO Figure out encoders and set them up here
 
