@@ -1,18 +1,22 @@
 package frc.team2220.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.sun.media.jfxmedia.logging.Logger;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team2220.robot.subsystems.GaganDrive;
+import frc.team2220.robot.subsystems.Shooter;
 
-import javax.naming.ldap.Control;
-
+/*
+The Robot class is the main class. It is ran by the roborio and therefore needs to include the various subsystems.
+Usually this is accomplished by running them with the scheduler.
+ */
 public class Robot extends TimedRobot {
 
-    public static GaganDrive  gaganDrive  = null;
-    public static OI          oi          = null;
+    // Instantiate Subsystems
+    public static GaganDrive    gaganDrive;
+    public static Shooter       shooter;
+
+    // Instantiate OI For Controls
+    public static OI          oi;
 
     @Override
     public void robotInit() {

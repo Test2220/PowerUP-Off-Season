@@ -1,5 +1,11 @@
 package frc.team2220.robot;
 
+/*
+The Robot Map Class is here to identify what CAN IDs represent what robot member.
+They are usually defined in all capital letters with underscores and the annotation "public static final" as that is the
+standard for constants.
+Not only robot members have to go here, but anything constant relating to the control of the robot.
+ */
 public class RobotMap {
 
     // Drivetrain Talon IDs

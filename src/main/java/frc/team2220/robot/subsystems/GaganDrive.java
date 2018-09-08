@@ -8,16 +8,22 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team2220.robot.RobotMap;
 import frc.team2220.robot.commands.XboxDrive;
 
+/*
+The Gagan Drive class is a subsystem that defines and controls the drivetrain CIM motors with Talon Motor Controllers.
+On initialization, the subsystem executes the Xbox Drive command in order to actually control the motors.
+The subsystem defines the members of the subsystem and a command usually controls those members.
+TODO Write Autonomous And Encoders Code
+ */
 public class GaganDrive extends Subsystem {
 
     // Instantiate DifferentialDrive
     private final DifferentialDrive diffDrive;
 
-    // Create CAN Talons
-    public static WPI_TalonSRX leftMaster     = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
-    public static WPI_TalonSRX rightMaster    = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
-    public static WPI_TalonSRX leftSlave      = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
-    public static WPI_TalonSRX rightSlave     = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
+    // Create Talons Specifically For Speed Controller Purposes
+    private static final WPI_TalonSRX leftMaster = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
+    private static final WPI_TalonSRX rightMaster = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
+    private static final WPI_TalonSRX leftSlave = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
+    private static final WPI_TalonSRX rightSlave = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
 
     // Execute XboxDrive Command During Periodic
     public void initDefaultCommand() {
@@ -32,23 +38,21 @@ public class GaganDrive extends Subsystem {
         rightSlave.follow(rightMaster);
 
         // Enable Motor Safety
-        /*
         leftMaster.setSafetyEnabled(true);
         rightMaster.setSafetyEnabled(true);
         leftSlave.setSafetyEnabled(true);
         rightSlave.setSafetyEnabled(true);
-        */
 
         // Brake Motors
         setNeutralMode(NeutralMode.Brake);
 
-        // Reverse Right Side Motors TODO Check if right side is the correct side to invert
+        // Invert Proper Motor Outputs
         rightMaster.setInverted(true);
         rightSlave.setInverted(true);
         leftMaster.setInverted(true);
         leftSlave.setInverted(true);
 
-        // TODO Figure out encoders and set them up here
+        // TODO Figure Out How Encoders Work And Write Code For Them Prior To Differential Drive Definition
 
         // Define DifferentialDrive With Configured Master Talons
         diffDrive = new DifferentialDrive(leftMaster, rightMaster);
@@ -56,17 +60,21 @@ public class GaganDrive extends Subsystem {
 
     /* DRIVETRAIN TELEOP AND AUTONOMOUS METHODS */
 
-    // TODO Check controller values to see if add or subtract turn param
-    // Custom CurvatureDrive Method To Work Without DifferentialDrive
-    /*public void curvatureDrive(double power, double turn) {
-        leftMaster.set(clip(power - turn, -1, 1));
-        rightMaster.set(clip(power + turn, -1, 1));
-    }*/
-
-    // TODO See if pre made or custom curvature drive is better
-    // Pre-made CurvatureDrive Method
+    // Curvature Drive Method To Control Power And Turn Amount With Seperate Axis
     public void curvatureDrive(double power, double turn) {
         diffDrive.curvatureDrive(power, turn, true);
+    }
+
+    // Sets Power To Both Drive Motors, Usually For Autonomous Or Testing
+    public void setPower(double bothPower) {
+        leftMaster.set(bothPower);
+        rightMaster.set(bothPower);
+    }
+
+    // Set Motor Percent Power To 0% And Brake Motors For Extra Stop Power
+    public void stopMotors() {
+        setPower(0);
+        setNeutralMode(NeutralMode.Brake);
     }
 
     // Switch Motors To Percent Output
@@ -75,34 +83,11 @@ public class GaganDrive extends Subsystem {
         rightMaster.set(ControlMode.PercentOutput, 0);
     }
 
-    // Sets Power To Both Drive Motors
-    public void setPower(double bothPower) {
-        leftMaster.set(bothPower);
-        rightMaster.set(bothPower);
-    }
-
     // Set Neutral Mode Of All Motors
-    public void setNeutralMode(NeutralMode neutralMode) {
+    private void setNeutralMode(NeutralMode neutralMode) {
         leftMaster.setNeutralMode(neutralMode);
         rightMaster.setNeutralMode(neutralMode);
         leftSlave.setNeutralMode(neutralMode);
         rightSlave.setNeutralMode(neutralMode);
-    }
-
-    // Stop And Brake Motors
-    public void stopMotors() {
-        setPower(0);
-        setNeutralMode(NeutralMode.Brake);
-    }
-
-    // TODO Remove if using native curvature drive
-    // Clip Method To Manage Range Of Values
-    private double clip(double input, double min, double max) {
-        if (input > max)
-            return max;
-        else if (input < min)
-            return min;
-        else
-            return input;
     }
 }

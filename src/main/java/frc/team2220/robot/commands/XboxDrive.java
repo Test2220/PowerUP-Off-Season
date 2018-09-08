@@ -3,7 +3,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2220.robot.Robot;
 
-// TODO Finish xbox drive class
+/*
+The Xbox Drive class requires the Gagan Drive subsystem in order to work.
+Very simply, what it does is utilize the curvature drive method from the differential drive class to control the robot
+using the right joystick Y axis for motor power and the left joystick X axis for turn power.
+ */
 public class XboxDrive extends Command {
 
     // Interrupt Cancel Boolean
