@@ -18,6 +18,8 @@ public class OI
             manipulatorController;
 
     // Readable Controller Values
+
+    //Dhruv Changed:
     public TwilightXBoxController getDriverController()       { return driverController; }
     public TwilightXBoxController getManipulatorController()  { return manipulatorController; }
 
@@ -29,6 +31,7 @@ public class OI
         manipulatorController = new TwilightXBoxController(RobotMap.XBOX_MANIPULATOR);
 
         //Configures what button does what
+        //Dhruv Changed:
         //TODO: Change code so that while right trigger is held, cube is shot.
         manipulatorController.getAButton().whileHeld(new ShootCube());
     }
