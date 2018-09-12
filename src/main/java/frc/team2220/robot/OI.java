@@ -3,6 +3,7 @@ package frc.team2220.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.team2220.robot.commands.ShootCube;
+import frc.team2220.robot.triggers.ControllerTriggerTrigger;
 import frc.team2220.robot.utils.TwilightXBoxController;
 
 
@@ -17,6 +18,7 @@ public class OI
             driverController,
             manipulatorController;
 
+    private final ControllerTriggerTrigger shootTrigger;
     // Readable Controller Values
 
     //Dhruv Changed:
@@ -29,10 +31,11 @@ public class OI
         // Define XboxController Variables
         driverController      = new TwilightXBoxController(RobotMap.XBOX_DRIVER);
         manipulatorController = new TwilightXBoxController(RobotMap.XBOX_MANIPULATOR);
+        shootTrigger = new ControllerTriggerTrigger(manipulatorController, GenericHID.Hand.kRight);
 
         //Configures what button does what
         //Dhruv Changed:
-        //TODO: Change code so that while right trigger is held, cube is shot.
-        manipulatorController.getAButton().whileHeld(new ShootCube());
+
+        shootTrigger.whileActive(new ShootCube());
     }
 }
