@@ -26,7 +26,8 @@ public class OI
     public TwilightXBoxController getManipulatorController()  { return manipulatorController; }
 
     // Constructor Defines Actions
-    public OI() {
+    public OI()
+    {
 
         // Define XboxController Variables
         driverController      = new TwilightXBoxController(RobotMap.XBOX_DRIVER);
@@ -36,6 +37,7 @@ public class OI
         //Configures what button does what
         //Dhruv Changed:
 
-        shootTrigger.whileActive(new ShootCube());
+        shootTrigger.whileActive(new ShootCube(0.24));
+        shootTrigger.whenInactive(new ShootCube(0));
     }
 }

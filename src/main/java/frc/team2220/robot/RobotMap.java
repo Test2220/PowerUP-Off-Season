@@ -1,6 +1,7 @@
 package frc.team2220.robot;
 
-public class RobotMap {
+public class RobotMap
+{
 
     // Drivetrain Talon IDs
     public static final int
@@ -13,10 +14,10 @@ public class RobotMap {
 
     //Configures all shooter motor controllers on robot map
     public static final int
-            SHOOTER_TOP_RIGHT = 5,
-            SHOOTER_TOP_LEFT = 6,
-            SHOOTER_BOTTOM_RIGHT = 7,
-            SHOOTER_BOTTOM_LEFT = 8;
+            SHOOTER_TOP_RIGHT = 11,
+            SHOOTER_TOP_LEFT = 10,
+            SHOOTER_BOTTOM_RIGHT = 9,
+            SHOOTER_BOTTOM_LEFT = 12;
 
     public static final int
             CUBE_PISTON_UP = 0,

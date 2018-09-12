@@ -8,12 +8,18 @@ import frc.team2220.robot.subsystems.Shooter;
 
 public class ShootCube extends InstantCommand
 {
-    public ShootCube() {
+
+    //Variables
+    double speed;
+
+    public ShootCube(double speed)
+    {
         requires(Robot.shooter);
+        this.speed = speed;
     }
     public void execute()
     {
         //Robot.oi.getDriver();
-        Robot.shooter.spinAllMotors(ControlMode.PercentOutput, 0.24);
+        Robot.shooter.spinAllMotors(ControlMode.PercentOutput, speed);
     }
 }
