@@ -12,30 +12,37 @@ import frc.team2220.robot.utils.TwilightXBoxController;
 public class OI
 {
 
-
-    // Instantiate XboxController Variables
-    private final TwilightXBoxController
-            driverController,
-            manipulatorController;
-
+    //Creates instance of ControllerTriggerTrigger object
     private final ControllerTriggerTrigger shootTrigger;
+
+    // Instantiate (Twilight)XboxController Variables
+    private final TwilightXBoxController
+            driver,
+            manipulator;
+
+
     // Readable Controller Values
 
     //Dhruv Changed:
-    public TwilightXBoxController getDriverController()       { return driverController; }
-    public TwilightXBoxController getManipulatorController()  { return manipulatorController; }
+    public TwilightXBoxController getDriver()       { return driver; }
+    public TwilightXBoxController getManipulator()  { return manipulator; }
 
     // Constructor Defines Actions
     public OI()
     {
 
+
         // Define XboxController Variables
-        driverController      = new TwilightXBoxController(RobotMap.XBOX_DRIVER);
-        manipulatorController = new TwilightXBoxController(RobotMap.XBOX_MANIPULATOR);
-        shootTrigger = new ControllerTriggerTrigger(manipulatorController, GenericHID.Hand.kRight);
+        driver      = new TwilightXBoxController(RobotMap.XBOX_DRIVER);
+        manipulator= new TwilightXBoxController(RobotMap.XBOX_MANIPULATOR);
+        shootTrigger = new ControllerTriggerTrigger(manipulator, GenericHID.Hand.kRight);
+
 
         //Configures what button does what
         //Dhruv Changed:
+        //TODO: Get rid of ControlTriggerTrigger, and use an instance of abstract class Trigger and use simple conditional instead(Reece's Idea).
+
+
 
         shootTrigger.whileActive(new ShootCube(0.24));
         shootTrigger.whenInactive(new ShootCube(0));

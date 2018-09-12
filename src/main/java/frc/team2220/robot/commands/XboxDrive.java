@@ -20,8 +20,8 @@ public class XboxDrive extends Command {
 
         // Define Variables From Driver Controller
         //Dhruv Changed:
-        double leftY    = Robot.oi.getDriverController().getYAxis(GenericHID.Hand.kLeft);
-        double rightX   = Robot.oi.getDriverController().getXAxis(GenericHID.Hand.kRight);
+        double leftY    = Robot.oi.getDriver().getYAxis(GenericHID.Hand.kLeft);
+        double rightX   = Robot.oi.getDriver().getXAxis(GenericHID.Hand.kRight);
 
         // Execute CurvatureDrive With Controller Values Specified
         Robot.gaganDrive.curvatureDrive(leftY, rightX);
