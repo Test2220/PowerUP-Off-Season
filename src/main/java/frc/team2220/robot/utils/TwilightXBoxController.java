@@ -5,93 +5,98 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class TwilightXBoxController {
+// Reece's Xbox Controller Class
+public class TwilightXboxController {
 
-    private XboxController xbox;
+    // Private Class Members
+    private final XboxController xb;
+    private final int port;
 
-
-    private Button aButton;
-    private Button bButton;
-    private Button xButton;
-    private Button yButton;
-    private Button leftBumper;
-    private Button rightBumper;
-    private Button backButton;
-    private Button startButton;
-
-    public TwilightXBoxController(int port) {
-
-        xbox = new XboxController(port);
-
-        aButton = new JoystickButton(xbox, 1);
-        bButton = new JoystickButton(xbox, 2);
-        xButton = new JoystickButton(xbox, 3);
-        yButton = new JoystickButton(xbox, 4);
-        leftBumper = new JoystickButton(xbox, 5);
-        rightBumper = new JoystickButton(xbox, 6);
-        backButton = new JoystickButton(xbox, 7);
-        startButton = new JoystickButton(xbox, 8);
-
+    /* CONSTRUCTOR INITIALIZE CLASS MEMBERS*/
+    public TwilightXboxController(int port) {
+        this.port = port;
+        xb = new XboxController(port);
     }
 
+    // Enum With Functions To Grab Boolean Buttons
+    public enum ButtonControl {
+        A(1), B(2), X(3), Y(4),
+        LEFT_BUMPER(5), RIGHT_BUMPER(6),
+        BACK(7), START(8),
+        LEFT_STICK(9), RIGHT_STICK(10);
 
-    public double getYAxis(GenericHID.Hand hand) {
-        return xbox.getY(hand);
+        private int rawAxis;
+
+        ButtonControl(int rawAxis) {
+            this.rawAxis = rawAxis;
+        }
+
+        private Button getButton(XboxController xb) {
+            return new JoystickButton(xb, rawAxis);
+        }
+
+        private boolean getButtonPressed(XboxController xb) {
+            return xb.getRawButton(rawAxis);
+        }
     }
 
-    public double getXAxis(GenericHID.Hand hand) {
-        return xbox.getX(hand);
+    // Enum With Functions TO Grab Variable Axes
+    public enum VariableControl {
+        LEFT_STICK_X(true, true, GenericHID.Hand.kLeft), LEFT_STICK_Y(true, false, GenericHID.Hand.kLeft), LEFT_TRIGGER(false, false, GenericHID.Hand.kLeft),
+        RIGHT_STICK_X(true, true, GenericHID.Hand.kRight), RIGHT_STICK_Y(true, false, GenericHID.Hand.kRight), RIGHT_TRIGGER(false, false, GenericHID.Hand.kRight);
+
+        private boolean isStick;
+        private boolean isX;
+        private GenericHID.Hand hand;
+
+        VariableControl(boolean isStick, boolean isX, GenericHID.Hand hand) {
+            this.isStick = isStick;
+            this.isX = isX;
+            this.hand = hand;
+        }
+
+        private double getAxis(XboxController xb) {
+            return isStick ? isX ? xb.getX(hand) : xb.getY(hand) : xb.getTriggerAxis(hand);
+        }
     }
 
-
-    public double getTrigger(GenericHID.Hand hand) {
-        return xbox.getTriggerAxis(hand);
+    // Set Controller Rumble
+    public void setRumble(double rumbleLeft, double rumbleRight) {
+        xb.setRumble(GenericHID.RumbleType.kLeftRumble, rumbleLeft);
+        xb.setRumble(GenericHID.RumbleType.kRightRumble, rumbleRight);
     }
 
-    public Button getAButton() {
-        return aButton;
+    // Get Value Of Selected Variable Axis
+    public double getAxes(VariableControl variableControl) {
+        return variableControl.getAxis(xb);
     }
 
-    public Button getBButton() {
-        return bButton;
+    // Get Value Of Selected Boolean Axis
+    public boolean getButtonPressed(ButtonControl buttonControl) {
+        return buttonControl.getButtonPressed(xb);
     }
 
-    public Button getXButton() {
-        return xButton;
+    // Get Button For Boolean Axis
+    public Button getButton(ButtonControl buttonControl) {
+        return buttonControl.getButton(xb);
     }
 
-    public Button getYButton() {
-        return yButton;
+    // Check If Variable Axis Is At Rest
+    public Button getAtRest(VariableControl variableControl) {
+        return new Button() {
+            @Override
+            public boolean get() {
+                return variableControl.getAxis(xb) == 0;
+            }
+        };
     }
 
-    public Button getLeftBumper() {
-        return leftBumper;
+    /* GET PRIVATE CLASS MEMBERS */
+    public XboxController getXbMember() {
+        return xb;
     }
 
-    public Boolean getLeftBumperBoolean() {
-        return leftBumper.get();
+    public int getPort() {
+        return port;
     }
-
-    public Button getRightBumper() {
-        return rightBumper;
-    }
-
-    public Boolean getRightBumperBoolean() {
-        return rightBumper.get();
-    }
-
-    public Button getBackButton() {
-        return backButton;
-    }
-
-    public Button getStartButton() {
-        return startButton;
-    }
-
-    public void setRumble(double intensity) {
-        xbox.setRumble(GenericHID.RumbleType.kLeftRumble, intensity);
-        xbox.setRumble(GenericHID.RumbleType.kRightRumble, intensity);
-
-    }
-
 }

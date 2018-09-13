@@ -12,17 +12,14 @@ Usually this is accomplished by running them with the scheduler.
 public class Robot extends TimedRobot {
 
     // Instantiate Subsystems
-    public static GaganDrive    gaganDrive;
-    public static Shooter       shooter;
+    public static final GaganDrive  gaganDrive  = new GaganDrive();
+    public static final Shooter     shooter     = new Shooter();
 
     // Instantiate OI For Controls
-    public static OI          oi;
+    public static final OI          oi          =  new OI();
 
     @Override
-    public void robotInit() {
-        gaganDrive = new GaganDrive();
-        oi = new OI();
-    }
+    public void robotInit() { }
 
     @Override
     public void disabledInit() { }

@@ -1,7 +1,7 @@
 package frc.team2220.robot.commands;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2220.robot.Robot;
+import frc.team2220.robot.utils.TwilightXboxController;
 
 /*
 The Xbox Drive class requires the Gagan Drive subsystem in order to work.
@@ -25,8 +25,8 @@ public class XboxDrive extends Command {
     public void execute() {
 
         // Define Variables From Driver Controller
-        double leftY    = Robot.oi.getDriver().getY(GenericHID.Hand.kLeft);
-        double rightX   = -Robot.oi.getDriver().getX(GenericHID.Hand.kRight);
+        double leftY    = Robot.oi.getDriver().getAxes(TwilightXboxController.VariableControl.LEFT_STICK_Y);
+        double rightX   = -Robot.oi.getDriver().getAxes(TwilightXboxController.VariableControl.RIGHT_STICK_X);
 
         // Execute CurvatureDrive With Controller Values Specified
         Robot.gaganDrive.curvatureDrive(leftY, rightX);
