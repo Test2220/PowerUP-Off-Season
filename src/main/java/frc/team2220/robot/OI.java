@@ -5,7 +5,11 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.team2220.robot.utils.TwilightXboxController;
 import frc.team2220.robot.commands.ShootCube;
 
-// The OI class specifies what command is ran when an action on the controllers occurs
+/*
+Short for Operator Interface, the OI class is where you put the controller binds to run commands.
+The goal is to keep all things relating to controller binds in this class to stay organized
+TODO Assign Commands To Controller Binds
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class OI {
 
@@ -23,7 +27,7 @@ public class OI {
         return new Trigger() {
             @Override
             public boolean get() {
-                double triggerValue = hand.equals(GenericHID.Hand.kLeft) ? xb.getAxes(TwilightXboxController.VariableControl.LEFT_TRIGGER) : xb.getAxes(TwilightXboxController.VariableControl.RIGHT_TRIGGER);
+                double triggerValue = hand.equals(GenericHID.Hand.kLeft) ? xb.getAxis(TwilightXboxController.VariableControl.LEFT_TRIGGER) : xb.getAxis(TwilightXboxController.VariableControl.RIGHT_TRIGGER);
                 return triggerValue >= 0.25;
             }
         };
@@ -40,9 +44,9 @@ public class OI {
         /* ASSIGN COMMANDS TO CONTROLLER BINDS */
 
         // TODO Set which controller and hand to use to shoot cube
-        /*
-        shootTrigger(controller, hand).whileActive(new ShootCube(0.24));
-        shootTrigger(controller, hand).whenInactive(new ShootCube(0));
-        */
+
+//        shootTrigger(controller, hand).whileActive(new ShootCube(0.24));
+//        shootTrigger(controller, hand).whenInactive(new ShootCube(0));
+
     }
 }

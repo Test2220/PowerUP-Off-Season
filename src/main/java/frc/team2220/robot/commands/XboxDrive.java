@@ -25,8 +25,8 @@ public class XboxDrive extends Command {
     public void execute() {
 
         // Define Variables From Driver Controller
-        double leftY    = Robot.oi.getDriver().getAxes(TwilightXboxController.VariableControl.LEFT_STICK_Y);
-        double rightX   = -Robot.oi.getDriver().getAxes(TwilightXboxController.VariableControl.RIGHT_STICK_X);
+        double leftY    = Robot.oi.getDriver().getAxis(TwilightXboxController.VariableControl.LEFT_STICK_Y);
+        double rightX   = -Robot.oi.getDriver().getAxis(TwilightXboxController.VariableControl.RIGHT_STICK_X);
 
         // Execute CurvatureDrive With Controller Values Specified
         Robot.gaganDrive.curvatureDrive(leftY, rightX);

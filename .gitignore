@@ -1,6 +1,4 @@
 *.iws
 *.ipr
 *.iml
-*.bin
-*.lock
 \.gradle

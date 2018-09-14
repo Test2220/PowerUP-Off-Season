@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-// Reece's Xbox Controller Class
+// TODO Explain Class
 public class TwilightXboxController {
 
     // Private Class Members
@@ -67,7 +67,7 @@ public class TwilightXboxController {
     }
 
     // Get Value Of Selected Variable Axis
-    public double getAxes(VariableControl variableControl) {
+    public double getAxis(VariableControl variableControl) {
         return variableControl.getAxis(xb);
     }
 
