@@ -1,28 +1,35 @@
 package frc.team2220.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.team2220.robot.utils.TwilightXboxController;
 import frc.team2220.robot.commands.ShootCube;
-import frc.team2220.robot.triggers.ControllerTriggerTrigger;
 
 // The OI class specifies what command is ran when an action on the controllers occurs
-// TODO assign actions to the controller binds
 @SuppressWarnings("FieldCanBeLocal")
 public class OI {
 
-    //Creates instance of ControllerTriggerTrigger object
-    //private final ControllerTriggerTrigger shootTrigger;
-
-    // Instantiate (Twilight)XboxController Variables
+    // Define Custom Xbox Controller Instance Variables
     private final TwilightXboxController
             driver,
             manipulator;
 
-    // Readable Xbox Controller Values
+    // Xbox Controller Contracts
     public final TwilightXboxController getDriver()       { return driver; }
     public final TwilightXboxController getManipulator()  { return manipulator; }
 
-    // Constructor Defines Actions
+    // Create Abstract Trigger Method
+    private Trigger shootTrigger(TwilightXboxController xb, GenericHID.Hand hand) {
+        return new Trigger() {
+            @Override
+            public boolean get() {
+                double triggerValue = hand.equals(GenericHID.Hand.kLeft) ? xb.getAxes(TwilightXboxController.VariableControl.LEFT_TRIGGER) : xb.getAxes(TwilightXboxController.VariableControl.RIGHT_TRIGGER);
+                return triggerValue >= 0.25;
+            }
+        };
+    }
+
+    // OI Constructor Initialize And Setup Members
     public OI() {
 
         /* SETUP AND DEFINE OI MEMBERS */
@@ -32,11 +39,10 @@ public class OI {
 
         /* ASSIGN COMMANDS TO CONTROLLER BINDS */
 
-        //Configures what button does what
-        //Dhruv Changed:
-        //TODO Get rid of ControlTriggerTrigger, and use an instance of abstract class Trigger and use simple conditional instead(Reece's Idea).
-
-        //shootTrigger.whileActive(new ShootCube(0.24));
-        //shootTrigger.whenInactive(new ShootCube(0));
+        // TODO Set which controller and hand to use to shoot cube
+        /*
+        shootTrigger(controller, hand).whileActive(new ShootCube(0.24));
+        shootTrigger(controller, hand).whenInactive(new ShootCube(0));
+        */
     }
 }
