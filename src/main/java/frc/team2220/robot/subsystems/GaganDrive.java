@@ -20,10 +20,10 @@ public class GaganDrive extends Subsystem {
     private final DifferentialDrive diffDrive;
 
     // Create Talons Specifically For Speed Controller Purposes
-    private static final WPI_TalonSRX leftMaster = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
-    private static final WPI_TalonSRX rightMaster = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
-    private static final WPI_TalonSRX leftSlave = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
-    private static final WPI_TalonSRX rightSlave = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
+    private static final WPI_TalonSRX leftMaster    = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
+    private static final WPI_TalonSRX rightMaster   = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
+    private static final WPI_TalonSRX leftSlave     = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
+    private static final WPI_TalonSRX rightSlave    = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
 
     // Execute XboxDrive Command During Periodic
     public void initDefaultCommand() {
