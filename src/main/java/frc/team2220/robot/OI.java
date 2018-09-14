@@ -11,7 +11,8 @@ The goal is to keep all things relating to controller binds in this class to sta
 TODO Assign Commands To Controller Binds
  */
 @SuppressWarnings("FieldCanBeLocal")
-public class OI {
+public class OI
+{
 
     // Define Custom Xbox Controller Instance Variables
     private final TwilightXboxController
@@ -23,7 +24,8 @@ public class OI {
     public final TwilightXboxController getManipulator()  { return manipulator; }
 
     // Create Abstract Trigger Method
-    private Trigger shootTrigger(TwilightXboxController xb, GenericHID.Hand hand) {
+    private Trigger shootTrigger(TwilightXboxController xb, GenericHID.Hand hand)
+    {
         return new Trigger() {
             @Override
             public boolean get() {
@@ -34,7 +36,8 @@ public class OI {
     }
 
     // OI Constructor Initialize And Setup Members
-    public OI() {
+    public OI()
+    {
 
         /* SETUP AND DEFINE OI MEMBERS */
 
@@ -45,8 +48,8 @@ public class OI {
 
         // TODO Set which controller and hand to use to shoot cube
 
-//        shootTrigger(controller, hand).whileActive(new ShootCube(0.24));
-//        shootTrigger(controller, hand).whenInactive(new ShootCube(0));
+        shootTrigger(manipulator, GenericHID.Hand.kRight).whileActive(new ShootCube(0.24));
+        shootTrigger(manipulator, GenericHID.Hand.kRight).whenInactive(new ShootCube(0));
 
     }
 }
