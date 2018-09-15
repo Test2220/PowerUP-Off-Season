@@ -47,6 +47,12 @@ public class Intake extends Subsystem
 
     public enum IntakePistonPosition
     {
+        EXTENDED,
+        RETRACTED
+    }
+
+    public enum rampPistonPosition
+    {
         UP,
         DOWN
     }
@@ -78,8 +84,26 @@ public class Intake extends Subsystem
     {
         switch (position)
         {
-            case UP:
+            case EXTENDED:
+                intakePistons.set(DoubleSolenoid.Value.kReverse);
+                break;
 
+            case RETRACTED:
+                intakePistons.set(DoubleSolenoid.Value.kForward);
+                break;
+        }
+    }
+
+    public void setRamp(rampPistonPosition position)
+    {
+        switch (position)
+        {
+            case UP:
+                rampPiston.set(DoubleSolenoid.Value.kForward);
+                break;
+            case DOWN:
+                rampPiston.set(DoubleSolenoid.Value.kForward);
+                break;
         }
     }
 

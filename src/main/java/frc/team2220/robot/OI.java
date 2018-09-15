@@ -2,6 +2,7 @@ package frc.team2220.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import frc.team2220.robot.commands.ActiveIntake;
 import frc.team2220.robot.utils.TwilightXboxController;
 import frc.team2220.robot.commands.ShootCube;
 
@@ -46,10 +47,12 @@ public class OI
 
         /* ASSIGN COMMANDS TO CONTROLLER BINDS */
 
-        // TODO Set which controller and hand to use to shoot cube
-
+        //Runs shooter motors while right trigger is held.
         shootTrigger(manipulator, GenericHID.Hand.kRight).whileActive(new ShootCube(0.24));
         shootTrigger(manipulator, GenericHID.Hand.kRight).whenInactive(new ShootCube(0));
+
+        //TODO: Create ActiveIntake command:
+        shootTrigger(manipulator, GenericHID.Hand.kLeft).whileActive(new ActiveIntake());
 
     }
 }
