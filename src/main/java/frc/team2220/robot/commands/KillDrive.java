@@ -11,11 +11,11 @@ public class KillDrive extends InstantCommand {
 
     // Require Gagan Drive Class In Order To Cancel It
     public KillDrive() {
-        requires(Robot.gaganDrive);
+        requires(Robot.twilightDrive);
     }
 
     // Run Once On Initialization
     public void initialize() {
-        Robot.gaganDrive.stopMotors();
+        Robot.twilightDrive.stopMotors();
     }
 }

@@ -2,7 +2,9 @@ package frc.team2220.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team2220.robot.subsystems.GaganDrive;
+import frc.team2220.robot.subsystems.Intake;
+import frc.team2220.robot.subsystems.Limelight;
+import frc.team2220.robot.subsystems.TwilightDrive;
 import frc.team2220.robot.subsystems.Shooter;
 
 /*
@@ -12,11 +14,13 @@ Usually this is accomplished by running them with the scheduler.
 public class Robot extends TimedRobot {
 
     // Instantiate Subsystems
-    public static final GaganDrive  gaganDrive  = new GaganDrive();
-    public static final Shooter     shooter     = new Shooter();
+    public static final TwilightDrive   twilightDrive   = new TwilightDrive();
+    public static final Shooter         shooter         = new Shooter();
+    public static final Intake          intake          = new Intake();
+    public static final Limelight       limelight       = new Limelight();
 
     // Instantiate OI For Controls
-    public static final OI          oi          =  new OI();
+    public static final OI              oi              =  new OI();
 
     @Override
     public void robotInit() { }
@@ -49,6 +53,6 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         //Scheduler.getInstance().run();
-        gaganDrive.setPower(0.2);
+        twilightDrive.setPower(0.2);
     }
 }

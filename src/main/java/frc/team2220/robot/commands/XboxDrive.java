@@ -4,7 +4,7 @@ import frc.team2220.robot.Robot;
 import frc.team2220.robot.utils.TwilightXboxController;
 
 /*
-The Xbox Drive class requires the Gagan Drive subsystem in order to work.
+The Xbox Drive command requires the drive train subsystem in order to work.
 Very simply, what it does is utilize the curvature drive method from the differential drive class to control the robot
 using the right joystick Y axis for motor power and the left joystick X axis for turn power.
  */
@@ -14,11 +14,11 @@ public class XboxDrive extends Command {
     private boolean interrupted;
 
     // Constructor Stops Use Without GaganDrive
-    public XboxDrive() { requires(Robot.gaganDrive); }
+    public XboxDrive() { requires(Robot.twilightDrive); }
 
     // On XboxDrive Switch Control Mode To Percent Output
     public void initialize() {
-        Robot.gaganDrive.usePercentOutput();
+        Robot.twilightDrive.usePercentOutput();
     }
 
     // Executes Drive Code Periodically
@@ -29,7 +29,7 @@ public class XboxDrive extends Command {
         double rightX   = -Robot.oi.getDriver().getAxis(TwilightXboxController.VariableControl.RIGHT_STICK_X);
 
         // Execute CurvatureDrive With Controller Values Specified
-        Robot.gaganDrive.curvatureDrive(leftY, rightX);
+        Robot.twilightDrive.curvatureDrive(leftY, rightX);
     }
 
     // Never Finish Command
