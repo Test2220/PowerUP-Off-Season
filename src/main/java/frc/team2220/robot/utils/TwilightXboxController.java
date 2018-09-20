@@ -91,11 +91,10 @@ public class TwilightXboxController {
         };
     }
 
-    /* GET PRIVATE CLASS MEMBERS */
+    /* CONTRACT PRIVATE CLASS MEMBERS */
     public XboxController getXbMember() {
         return xb;
     }
-
     public int getPort() {
         return port;
     }

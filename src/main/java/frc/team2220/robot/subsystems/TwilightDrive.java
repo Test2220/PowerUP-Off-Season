@@ -9,29 +9,29 @@ import frc.team2220.robot.RobotMap;
 import frc.team2220.robot.commands.XboxDrive;
 
 /*
-The Gagan Drive class is a subsystem that defines and controls the drivetrain CIM motors with Talon Motor Controllers.
+The Twilight Drive class is a subsystem that defines and controls the drivetrain CIM motors with Talon Motor Controllers.
 On initialization, the subsystem executes the Xbox Drive command in order to actually control the motors.
 The subsystem defines the members of the subsystem and a command usually controls those members.
 TODO Write Autonomous And Encoders Code
  */
-public class GaganDrive extends Subsystem {
+public class TwilightDrive extends Subsystem {
 
     // Instantiate DifferentialDrive
     private final DifferentialDrive diffDrive;
 
-    // Create Talons Specifically For Speed Controller Purposes
+    // Instantiate And Initialize Speed Controller Supported Talons
     private static final WPI_TalonSRX leftMaster    = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_MASTER);
     private static final WPI_TalonSRX rightMaster   = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_MASTER);
     private static final WPI_TalonSRX leftSlave     = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_SLAVE);
     private static final WPI_TalonSRX rightSlave    = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE);
 
     // Execute XboxDrive Command During Periodic
-    public void initDefaultCommand() {
+    protected void initDefaultCommand() {
         setDefaultCommand(new XboxDrive());
     }
 
-    // Constructor Configure Talons and Define DifferentialDrive
-    public GaganDrive() {
+    // Constructor Configure Talons and Defines Differential Drive
+    public TwilightDrive() {
 
         // Set Slaves To Follow Masters
         leftSlave.follow(leftMaster);
@@ -43,7 +43,7 @@ public class GaganDrive extends Subsystem {
         leftSlave.setSafetyEnabled(true);
         rightSlave.setSafetyEnabled(true);
 
-        // Brake Motors
+        // Set Motors Brake Motors At Neutral State
         setNeutralMode(NeutralMode.Brake);
 
         // Invert Proper Motor Outputs
