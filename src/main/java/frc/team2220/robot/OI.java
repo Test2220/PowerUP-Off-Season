@@ -51,8 +51,8 @@ public class OI
         shootTrigger(manipulator, GenericHID.Hand.kRight).whileActive(new ShootCube(0.24));
         shootTrigger(manipulator, GenericHID.Hand.kRight).whenInactive(new ShootCube(0));
 
-        //TODO: Configure correct speed value:
-        shootTrigger(manipulator, GenericHID.Hand.kLeft).whileActive(new ActiveIntake(-0.75));
+        //TODO: Create ActiveIntake command:
+        shootTrigger(manipulator, GenericHID.Hand.kLeft).whileActive(new ActiveIntake());
 
     }
 }
