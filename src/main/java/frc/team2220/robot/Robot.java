@@ -10,7 +10,8 @@ import frc.team2220.robot.subsystems.Intake;
 The Robot class is the main class. It is ran by the roborio and therefore needs to include the various subsystems.
 Usually this is accomplished by running them with the scheduler.
  */
-public class Robot extends TimedRobot {
+public class Robot extends TimedRobot
+{
 
     // Instantiate Subsystems
     public static final TwilightDrive twilightDrive  = new TwilightDrive();
@@ -52,7 +53,8 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void testPeriodic() {
+    public void testPeriodic()
+    {
         //Scheduler.getInstance().run();
         twilightDrive.setPower(0.2);
     }

@@ -27,10 +27,14 @@ public class OI
     // Create Abstract Trigger Method
     private Trigger shootTrigger(TwilightXboxController xb, GenericHID.Hand hand)
     {
-        return new Trigger() {
+        return new Trigger()
+        {
             @Override
-            public boolean get() {
-                double triggerValue = hand.equals(GenericHID.Hand.kLeft) ? xb.getAxis(TwilightXboxController.VariableControl.LEFT_TRIGGER) : xb.getAxis(TwilightXboxController.VariableControl.RIGHT_TRIGGER);
+            public boolean get()
+            {
+                double triggerValue = hand.equals(GenericHID.Hand.kLeft)
+                        ? xb.getAxis(TwilightXboxController.VariableControl.LEFT_TRIGGER)
+                        : xb.getAxis(TwilightXboxController.VariableControl.RIGHT_TRIGGER);
                 return triggerValue >= 0.25;
             }
         };
@@ -52,7 +56,7 @@ public class OI
         shootTrigger(manipulator, GenericHID.Hand.kRight).whenInactive(new ShootCube(0));
 
         //TODO: Create ActiveIntake command:
-        shootTrigger(manipulator, GenericHID.Hand.kLeft).whileActive(new ActiveIntake());
+        shootTrigger(manipulator, GenericHID.Hand.kLeft).whileActive(new ActiveIntake(-0.75));
 
     }
 }

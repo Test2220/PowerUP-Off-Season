@@ -8,12 +8,13 @@ The Xbox Drive command requires the drive train subsystem in order to work.
 Very simply, what it does is utilize the curvature drive method from the differential drive class to control the robot
 using the right joystick Y axis for motor power and the left joystick X axis for turn power.
  */
-public class XboxDrive extends Command {
+public class XboxDrive extends Command
+{
 
     // Interrupt Cancel Boolean
     private boolean interrupted;
 
-    // Constructor Stops Use Without GaganDrive
+    // Constructor Stops Use Without TwighlightDrive
     public XboxDrive() { requires(Robot.twilightDrive); }
 
     // On XboxDrive Switch Control Mode To Percent Output
@@ -22,7 +23,8 @@ public class XboxDrive extends Command {
     }
 
     // Executes Drive Code Periodically
-    public void execute() {
+    public void execute()
+    {
 
         // Define Variables From Driver Controller
         double leftY    = Robot.oi.getDriver().getAxis(TwilightXboxController.VariableControl.LEFT_STICK_Y);
@@ -37,7 +39,8 @@ public class XboxDrive extends Command {
 
     // If Interrupted Kill Drivetrain
     @Override
-    public void interrupted() {
+    public void interrupted()
+    {
 
         // Run Kill Drive Train Command
         new KillDrive();
