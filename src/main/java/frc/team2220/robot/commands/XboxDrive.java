@@ -18,7 +18,8 @@ public class XboxDrive extends Command
     public XboxDrive() { requires(Robot.twilightDrive); }
 
     // On XboxDrive Switch Control Mode To Percent Output
-    public void initialize() {
+    public void initialize()
+    {
         Robot.twilightDrive.usePercentOutput();
     }
 
